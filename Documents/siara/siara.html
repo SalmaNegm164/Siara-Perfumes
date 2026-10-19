@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#100d0b">
+  <meta name="description" content="سيارا — عطور عربية فاخرة مستوحاة من العود والعنبر والورد الطائفي. اكتشفي عطرك الذي يحكي قصتك.">
+  <title>سيارا | نفحات من الشرق</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #100d0b;
+      --bg-soft: #17110f;
+      --panel: #1b1411;
+      --gold: #c7a36a;
+      --gold-light: #ecd2a0;
+      --wine: #702b39;
+      --wine-light: #8b3a49;
+      --text: #f5eee4;
+      --muted: #b9aaa0;
+      --line: rgba(199,163,106,.3);
+      --serif: "Amiri", Georgia, serif;
+      --sans: "Cairo", Tahoma, sans-serif;
+      --radius: 14px;
+      color-scheme: dark;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+    body { margin: 0; background: var(--bg); color: var(--text); font-family: var(--sans); line-height: 1.8; }
+    body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opacity: .12; z-index: -1; background-image: radial-gradient(circle at 10% 20%, #684328 0, transparent 26%), radial-gradient(circle at 90% 75%, #511b2a 0, transparent 30%); }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    button, input { font: inherit; }
+    button, a, input { -webkit-tap-highlight-color: transparent; }
+    :focus-visible { outline: 3px solid var(--gold-light); outline-offset: 4px; }
+    .container { width: min(1140px, calc(100% - 40px)); margin-inline: auto; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 12px; color: var(--gold); font-size: .78rem; letter-spacing: .08em; }
+    .eyebrow::before { content: ""; width: 34px; height: 1px; background: var(--gold); }
+    .section-title { font: 700 clamp(2rem, 4vw, 3rem)/1.3 var(--serif); text-align: center; margin: 0 0 12px; color: var(--gold-light); }
+    .section-subtitle { color: var(--muted); text-align: center; margin: 0 auto 42px; max-width: 600px; font-size: .95rem; }
+    .btn { display: inline-flex; justify-content: center; align-items: center; gap: 10px; border: 1px solid var(--gold); padding: 11px 23px; border-radius: 999px; cursor: pointer; transition: background .25s, transform .25s, border-color .25s; font-weight: 600; font-size: .88rem; }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary { color: #fff5e7; background: var(--wine); border-color: #b87b70; }
+    .btn-primary:hover { background: var(--wine-light); }
+    .btn-outline { background: transparent; color: var(--gold-light); }
+    .btn-outline:hover { background: rgba(199,163,106,.1); }
+    .icon { width: 18px; height: 18px; display: inline-block; flex: 0 0 auto; }
+
+    /* Header */
+    .site-header { position: sticky; top: 0; z-index: 50; background: rgba(16,13,11,.94); backdrop-filter: blur(14px); border-bottom: 1px solid var(--line); }
+    .nav { min-height: 78px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { display: inline-flex; align-items: center; gap: 10px; flex-shrink: 0; }
+    .brand-mark { color: var(--gold); font: 2.1rem/1 var(--serif); }
+    .brand-name { display: flex; flex-direction: column; line-height: 1; }
+    .brand-name strong { font: 700 1.8rem/1.1 var(--serif); color: var(--gold-light); }
+    .brand-name small { font-size: .58rem; letter-spacing: .35em; color: var(--gold); direction: ltr; text-align: center; }
+    .nav-links { display: flex; align-items: center; gap: clamp(14px, 2.2vw, 30px); }
+    .nav-links a { font-size: .82rem; color: var(--muted); transition: color .2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--gold-light); }
+    .nav-actions { display: flex; align-items: center; gap: 12px; }
+    .cart-button, .menu-toggle { background: none; color: var(--gold-light); border: 1px solid var(--line); border-radius: 50%; width: 42px; height: 42px; display: inline-grid; place-items: center; cursor: pointer; position: relative; }
+    .cart-count { position: absolute; top: -6px; left: -5px; background: var(--wine); color: white; min-width: 19px; height: 19px; border-radius: 50%; display: grid; place-items: center; font-size: .68rem; border: 1px solid var(--gold); }
+    .menu-toggle { display: none; }
+
+    /* Hero */
+    .hero { min-height: 590px; position: relative; display: grid; align-items: center; overflow: hidden; border-bottom: 1px solid var(--line); }
+    .hero::before { content: ""; position: absolute; inset: 0; background: linear-gradient(270deg, rgba(16,13,11,.98) 0%, rgba(16,13,11,.86) 38%, rgba(16,13,11,.12) 100%), url("https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=2000&q=88") center 48%/cover; transform: scale(1.02); }
+    .hero::after { content: "✧"; position: absolute; left: 7%; top: 13%; color: rgba(199,163,106,.45); font-size: 4rem; }
+    .hero-content { position: relative; z-index: 1; max-width: 600px; padding-block: 95px; }
+    .hero-kicker { color: var(--gold); font-size: .85rem; margin-bottom: 14px; }
+    .hero h1 { font: 700 clamp(3.4rem, 8vw, 6.5rem)/1.04 var(--serif); margin: 0; color: var(--gold-light); }
+    .hero h2 { font: 700 clamp(1.45rem, 3.2vw, 2.35rem)/1.5 var(--serif); margin: 4px 0 18px; }
+    .hero p { color: #ded1c7; max-width: 480px; margin: 0 0 28px; }
+    .hero-note { display: flex; align-items: center; gap: 16px; margin-top: 42px; color: var(--muted); font-size: .78rem; }
+    .hero-note span { display: flex; align-items: center; gap: 7px; }
+    .hero-note i { width: 4px; height: 4px; background: var(--gold); border-radius: 50%; }
+
+    /* Story */
+    .story { padding: 94px 0; background: linear-gradient(100deg, rgba(94,51,31,.13), transparent 60%); border-bottom: 1px solid var(--line); }
+    .story-grid { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: clamp(36px, 7vw, 100px); }
+    .story-art { min-height: 430px; display: grid; place-items: center; position: relative; border: 1px solid rgba(199,163,106,.34); border-radius: 49% 49% 18px 18px; background: radial-gradient(ellipse at 50% 48%, rgba(116,67,30,.32), rgba(16,13,11,.12) 65%), linear-gradient(145deg, rgba(58,34,21,.3), rgba(16,13,11,.1)); overflow: hidden; }
+    .story-art::before, .story-art::after { content: ""; position: absolute; width: 255px; height: 335px; border: 1px solid rgba(199,163,106,.55); border-radius: 50% 50% 0 0; }
+    .story-art::after { width: 218px; height: 290px; border-color: rgba(199,163,106,.42); }
+    .story-emblem { width: 145px; height: 220px; z-index: 1; filter: drop-shadow(0 0 20px rgba(199,163,106,.24)); }
+    .story-flower { position: absolute; font-size: 3rem; color: #8d3448; z-index: 2; }
+    .story-flower.one { top: 22%; right: 18%; font-size: 2.7rem; } .story-flower.two { bottom: 23%; left: 17%; font-size: 3.2rem; }
+    .story-copy h2 { font: 700 clamp(2rem, 4vw, 3rem)/1.3 var(--serif); margin: 12px 0 18px; }
+    .story-copy p { color: var(--muted); margin: 0 0 20px; }
+    .story-signature { color: var(--gold); font: italic 1.35rem var(--serif); margin-top: 24px; }
+
+    /* Collection */
+    .collection { padding: 92px 0 100px; }
+    .products { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 22px; }
+    .product-card { border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: linear-gradient(150deg, #1c1512, #100d0b 75%); transition: transform .3s, border-color .3s; }
+    .product-card:hover { transform: translateY(-6px); border-color: rgba(199,163,106,.75); }
+    .product-image { height: 260px; overflow: hidden; position: relative; background: #211713; }
+    .product-image img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
+    .product-card:hover .product-image img { transform: scale(1.05); }
+    .product-label { position: absolute; top: 14px; right: 14px; color: var(--gold-light); border: 1px solid var(--line); background: rgba(16,13,11,.75); padding: 3px 12px; border-radius: 30px; font-size: .7rem; }
+    .product-info { padding: 22px; }
+    .product-info h3 { font: 700 1.65rem/1.2 var(--serif); color: var(--gold-light); margin: 0 0 5px; }
+    .product-desc { color: var(--muted); font-size: .83rem; margin: 0 0 18px; min-height: 27px; }
+    .notes { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 12px 0; display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; margin-bottom: 16px; }
+    .note { text-align: center; font-size: .72rem; color: var(--muted); }
+    .note strong { display: block; color: var(--gold); font-size: .75rem; margin-bottom: 3px; }
+    .product-bottom { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+    .price { font-size: 1.1rem; color: var(--gold-light); font-weight: 700; white-space: nowrap; }
+    .product-bottom .btn { padding: 9px 13px; font-size: .78rem; }
+
+    /* Testimonials */
+    .testimonials { padding: 78px 0 90px; background: #15100e; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .reviews { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; }
+    .review { border: 1px solid var(--line); padding: 25px; border-radius: var(--radius); background: rgba(255,255,255,.015); }
+    .review-top { display: flex; align-items: center; gap: 13px; margin-bottom: 16px; }
+    .avatar { width: 46px; height: 46px; border-radius: 50%; display: grid; place-items: center; background: linear-gradient(145deg, #81513c, #2b1716); color: var(--gold-light); border: 1px solid var(--gold); font: 1.25rem var(--serif); }
+    .review h3 { margin: 0; font-size: .92rem; }
+    .stars { color: var(--gold); letter-spacing: 2px; font-size: .8rem; }
+    .review p { color: var(--muted); font-size: .87rem; margin: 0; }
+
+    /* Newsletter */
+    .newsletter { padding: 48px 0; background: linear-gradient(110deg, #3b171e, #6b2935 55%, #351519); border-bottom: 1px solid rgba(199,163,106,.55); position: relative; overflow: hidden; }
+    .newsletter::before { content: "❋"; position: absolute; font-size: 13rem; color: rgba(236,210,160,.06); left: 3%; top: -75px; }
+    .newsletter-inner { position: relative; display: flex; justify-content: space-between; align-items: center; gap: 28px; }
+    .newsletter h2 { font: 700 2rem/1.3 var(--serif); margin: 0 0 6px; color: var(--gold-light); }
+    .newsletter p { margin: 0; color: #e0c9c2; font-size: .88rem; }
+    .newsletter-form { display: flex; gap: 8px; width: min(490px, 100%); }
+    .newsletter-form input { flex: 1; min-width: 0; background: rgba(16,13,11,.45); border: 1px solid rgba(236,210,160,.45); color: white; border-radius: 999px; padding: 12px 18px; }
+    .newsletter-form input::placeholder { color: #d1b7b1; }
+    .newsletter-form .btn { background: var(--gold-light); color: #24140f; border-color: var(--gold-light); white-space: nowrap; }
+
+    /* Footer */
+    .footer { padding: 58px 0 25px; background: #0b0908; }
+    .footer-grid { display: grid; grid-template-columns: 1.3fr 1fr 1fr 1fr; gap: 35px; }
+    .footer h3 { color: var(--gold-light); font-size: .95rem; margin: 0 0 16px; }
+    .footer p, .footer a, .footer li { color: var(--muted); font-size: .82rem; }
+    .footer a:hover { color: var(--gold-light); }
+    .footer ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 7px; }
+    .footer-brand p { max-width: 260px; }
+    .socials { display: flex; gap: 10px; margin-top: 17px; }
+    .socials a { width: 34px; height: 34px; display: grid; place-items: center; border: 1px solid var(--line); border-radius: 50%; color: var(--gold-light); }
+    .copyright { border-top: 1px solid rgba(199,163,106,.17); margin-top: 40px; padding-top: 20px; display: flex; justify-content: space-between; gap: 15px; color: #82766d; font-size: .75rem; }
+
+    /* Toast & scroll reveal */
+    .toast { position: fixed; z-index: 100; bottom: 24px; right: 24px; max-width: min(390px, calc(100% - 48px)); padding: 14px 20px; background: #211914; border: 1px solid var(--gold); color: var(--text); border-radius: 12px; box-shadow: 0 14px 45px #0008; opacity: 0; transform: translateY(15px); pointer-events: none; transition: opacity .25s, transform .25s; }
+    .toast.show { opacity: 1; transform: translateY(0); }
+    .toast strong { color: var(--gold-light); }
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity .65s ease, transform .65s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 950px) {
+      .nav-links { gap: 13px; }
+      .nav-links a { font-size: .75rem; }
+      .nav-actions .shop-link { display: none; }
+      .product-image { height: 220px; }
+      .product-info { padding: 17px; }
+      .product-bottom { align-items: flex-start; flex-direction: column; }
+      .product-bottom .btn { width: 100%; }
+      .footer-grid { grid-template-columns: repeat(2,1fr); }
+    }
+    @media (max-width: 700px) {
+      html { scroll-padding-top: 72px; }
+      .container { width: min(100% - 28px, 540px); }
+      .nav { min-height: 70px; }
+      .menu-toggle { display: inline-grid; }
+      .nav-actions { gap: 8px; }
+      .nav-actions .btn { display: none; }
+      .nav-links { display: none; position: absolute; top: 69px; right: 0; left: 0; background: #100d0b; border-bottom: 1px solid var(--line); padding: 16px 22px 22px; flex-direction: column; align-items: stretch; gap: 0; }
+      .nav-links.open { display: flex; }
+      .nav-links a { padding: 12px 0; font-size: .9rem; border-bottom: 1px solid rgba(199,163,106,.12); }
+      .hero { min-height: 570px; }
+      .hero::before { background: linear-gradient(0deg, rgba(16,13,11,.98) 0%, rgba(16,13,11,.82) 46%, rgba(16,13,11,.25) 100%), url("https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=1000&q=85") 45% center/cover; }
+      .hero-content { padding-block: 100px 65px; }
+      .hero h1 { font-size: 4.2rem; }
+      .hero-note { flex-wrap: wrap; margin-top: 30px; gap: 10px 14px; }
+      .story { padding: 65px 0; }
+      .story-grid { grid-template-columns: 1fr; gap: 35px; }
+      .story-art { min-height: 320px; order: 2; }
+      .story-art::before { width: 205px; height: 260px; }
+      .story-art::after { width: 174px; height: 225px; }
+      .story-emblem { width: 112px; height: 180px; }
+      .story-copy { order: 1; }
+      .collection { padding: 65px 0 72px; }
+      .products { grid-template-columns: 1fr; max-width: 430px; margin-inline: auto; }
+      .product-image { height: 270px; }
+      .product-bottom { flex-direction: row; align-items: center; }
+      .product-bottom .btn { width: auto; }
+      .reviews { grid-template-columns: 1fr; }
+      .review { padding: 21px; }
+      .testimonials { padding: 62px 0; }
+      .newsletter-inner { align-items: stretch; flex-direction: column; gap: 20px; }
+      .newsletter-form { width: 100%; }
+      .newsletter-form .btn { padding-inline: 16px; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 30px 22px; }
+      .copyright { flex-direction: column; }
+    }
+    @media (max-width: 390px) {
+      .brand-name strong { font-size: 1.55rem; }
+      .brand-mark { font-size: 1.7rem; }
+      .cart-button, .menu-toggle { width: 38px; height: 38px; }
+      .newsletter-form { flex-direction: column; }
+      .newsletter-form .btn { width: 100%; }
+      .product-bottom { flex-direction: column; align-items: stretch; }
+      .product-bottom .btn { width: 100%; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="#home" aria-label="سيارا - الصفحة الرئيسية">
+        <span class="brand-mark" aria-hidden="true">❋</span>
+        <span class="brand-name"><strong>سيارا</strong><small>SIARA</small></span>
+      </a>
+      <nav class="nav-links" id="main-nav" aria-label="القائمة الرئيسية">
+        <a class="active" href="#home">الرئيسية</a>
+        <a href="#collection">المجموعة</a>
+        <a href="#story">قصة البراند</a>
+        <a href="#reviews">آراء العملاء</a>
+        <a href="#contact">تواصلي معنا</a>
+      </nav>
+      <div class="nav-actions">
+        <a class="btn btn-primary shop-link" href="#collection">تسوّقي المجموعة <span aria-hidden="true">↙</span></a>
+        <button class="cart-button" type="button" aria-label="سلة التسوق" id="cart-button">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 3h2l2.2 12.1a2 2 0 0 0 2 1.6h8.9a2 2 0 0 0 2-1.6L22 7H6"/><circle cx="10" cy="21" r="1"/><circle cx="19" cy="21" r="1"/></svg>
+          <span class="cart-count" id="cart-count" aria-live="polite">0</span>
+        </button>
+        <button class="menu-toggle" id="menu-toggle" type="button" aria-label="فتح القائمة" aria-expanded="false" aria-controls="main-nav">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-kicker">حكاية شرقية تُروى بالعطر</div>
+          <h1>سيارا</h1>
+          <h2>نفحات من الشرق... لحكايتك الخاصة</h2>
+          <p>دار عطور عربية تحتفي بأصالة المكونات الشرقية، وتمزج العود والعنبر والورد الطائفي في عطور تترك أثرًا لا يُنسى.</p>
+          <a class="btn btn-primary" href="#collection">اكتشفي المجموعة <span aria-hidden="true">←</span></a>
+          <div class="hero-note" aria-label="مميزات سيارا">
+            <span><i></i> مكونات مختارة بعناية</span>
+            <span><i></i> بصمة عطرية تدوم</span>
+            <span><i></i> صُنعت بشغف</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="story" id="story">
+      <div class="container story-grid">
+        <div class="story-art reveal" aria-label="عنصر فني مستوحى من التراث الشرقي">
+          <span class="story-flower one" aria-hidden="true">✿</span>
+          <svg class="story-emblem" viewBox="0 0 140 220" role="img" aria-label="شعار سيارا الزخرفي">
+            <defs><linearGradient id="siaraGold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f1d49a"/><stop offset=".48" stop-color="#bd8e48"/><stop offset="1" stop-color="#f6dba5"/></linearGradient></defs>
+            <g fill="none" stroke="url(#siaraGold)" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M70 15 C49 42 76 53 58 77 C44 96 35 110 42 132 C48 151 61 157 70 169 C79 157 92 151 98 132 C105 110 96 96 82 77 C64 53 91 42 70 15Z"/>
+              <path d="M69 44 C68 66 52 80 54 99 C56 114 66 122 70 135 C74 122 84 114 86 99 C88 80 72 66 69 44Z"/>
+              <path d="M70 72 C61 91 65 105 70 115 C75 105 79 91 70 72Z" fill="url(#siaraGold)" stroke="none"/>
+              <path d="M70 139 C58 151 51 164 53 179 C61 176 67 170 70 163 C73 170 79 176 87 179 C89 164 82 151 70 139Z"/>
+              <path d="M70 181 L70 197 M59 190 L70 201 L81 190"/>
+              <path d="M70 5 L75 14 L70 23 L65 14Z" fill="url(#siaraGold)" stroke="none"/>
+            </g>
+          </svg>
+          <span class="story-flower two" aria-hidden="true">✳</span>
+        </div>
+        <div class="story-copy reveal">
+          <span class="eyebrow">قصة البراند</span>
+          <h2>أكثر من عطر... إنها هوية</h2>
+          <p>في سيارا، نؤمن أن العطر ليس مجرد رائحة، بل هو ذكرى وإحساس وقصة تُروى دون كلمات. استلهمنا من تراثنا الشرقي الأصيل لنقدم لكِ عطورًا تعبّر عن حضوركِ وترافقكِ في كل لحظة من رحلتكِ.</p>
+          <p>كل نفحة صُممت لتجمع بين دفء الشرق وأناقة التفاصيل؛ لأن حكايتكِ تستحق توقيعًا فريدًا.</p>
+          <div class="story-signature">بكل حب، فريق سيارا</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="collection" id="collection">
+      <div class="container">
+        <span class="eyebrow" style="display:flex;justify-content:center">اختاري توقيعكِ</span>
+        <h2 class="section-title">المجموعة</h2>
+        <p class="section-subtitle">ثلاث حكايات عطرية، لكل واحدة منها طابعها الخاص. أيّها تشبهكِ؟</p>
+        <div class="products">
+          <article class="product-card reveal">
+            <div class="product-image">
+              <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=900&q=85" alt="زجاجة عطر داكنة بإضاءة ذهبية" loading="lazy">
+              <span class="product-label">الأكثر تميزًا</span>
+            </div>
+            <div class="product-info">
+              <h3>عود الليل</h3>
+              <p class="product-desc">عمق شرقي دافئ يترك حضورًا لا يُنسى.</p>
+              <div class="notes" aria-label="هرم الروائح">
+                <div class="note"><strong>مقدمة</strong>زعفران · ورد</div>
+                <div class="note"><strong>قلب</strong>عود · عسل</div>
+                <div class="note"><strong>قاعدة</strong>عنبر · مسك</div>
+              </div>
+              <div class="product-bottom">
+                <span class="price">١٬٩٥٠ جنيه</span>
+                <button class="btn btn-primary add-to-cart" data-product="عود الليل" data-price="1950">أضيفي إلى السلة <span aria-hidden="true">＋</span></button>
+              </div>
+            </div>
+          </article>
+
+          <article class="product-card reveal">
+            <div class="product-image">
+              <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=900&q=85" alt="عطر أنيق بلمسات وردية" loading="lazy">
+              <span class="product-label">لمسة رومانسية</span>
+            </div>
+            <div class="product-info">
+              <h3>ورد طائفي</h3>
+              <p class="product-desc">رقة الورد في حكاية أنثوية ناعمة.</p>
+              <div class="notes" aria-label="هرم الروائح">
+                <div class="note"><strong>مقدمة</strong>ورد طائفي · ليمون</div>
+                <div class="note"><strong>قلب</strong>ورد · ياسمين</div>
+                <div class="note"><strong>قاعدة</strong>عنبر · مسك</div>
+              </div>
+              <div class="product-bottom">
+                <span class="price">١٬٧٥٠ جنيه</span>
+                <button class="btn btn-primary add-to-cart" data-product="ورد طائفي" data-price="1750">أضيفي إلى السلة <span aria-hidden="true">＋</span></button>
+              </div>
+            </div>
+          </article>
+
+          <article class="product-card reveal">
+            <div class="product-image">
+              <img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=900&q=85" alt="زجاجة عطر بلون العنبر الذهبي" loading="lazy">
+              <span class="product-label">دفء لا يقاوم</span>
+            </div>
+            <div class="product-info">
+              <h3>عنبر الشروق</h3>
+              <p class="product-desc">نفحات غنية تلتقي فيها الفخامة بالدفء.</p>
+              <div class="notes" aria-label="هرم الروائح">
+                <div class="note"><strong>مقدمة</strong>برتقال · توابل</div>
+                <div class="note"><strong>قلب</strong>عنبر · زهور بيضاء</div>
+                <div class="note"><strong>قاعدة</strong>خشب الصندل · مسك</div>
+              </div>
+              <div class="product-bottom">
+                <span class="price">١٬٨٥٠ جنيه</span>
+                <button class="btn btn-primary add-to-cart" data-product="عنبر الشروق" data-price="1850">أضيفي إلى السلة <span aria-hidden="true">＋</span></button>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="testimonials" id="reviews">
+      <div class="container">
+        <h2 class="section-title">آراء عميلاتنا</h2>
+        <p class="section-subtitle">كلمات جميلة من أشخاص أصبحت سيارا جزءًا من حكايتهم.</p>
+        <div class="reviews">
+          <article class="review reveal">
+            <div class="review-top"><div class="avatar" aria-hidden="true">م</div><div><h3>منة أحمد</h3><div class="stars" aria-label="٥ من ٥ نجوم">★★★★★</div></div></div>
+            <p>«اشتريت عنبر الشروق، وكانت تجربة استثنائية. الرائحة فخمة ومختلفة تمامًا، ووصلني بتغليف أنيق جدًا.»</p>
+          </article>
+          <article class="review reveal">
+            <div class="review-top"><div class="avatar" aria-hidden="true">ن</div><div><h3>ندى خالد</h3><div class="stars" aria-label="٥ من ٥ نجوم">★★★★★</div></div></div>
+            <p>«سيارا مش مجرد عطور، دي رحلة من الجمال والفخامة. العطر ثابت وأجمل مما توقعت.»</p>
+          </article>
+          <article class="review reveal">
+            <div class="review-top"><div class="avatar" aria-hidden="true">س</div><div><h3>سارة محمد</h3><div class="stars" aria-label="٥ من ٥ نجوم">★★★★★</div></div></div>
+            <p>«عود الليل بقى مميز جدًا في خروجاتي. فوحانه هادي وأنيق، وتجربة راقية من أول لحظة.»</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="newsletter" id="newsletter">
+      <div class="container newsletter-inner">
+        <div>
+          <span class="eyebrow">رسائل صغيرة... ومفاجآت جميلة</span>
+          <h2>انضمي إلى نادي سيارا</h2>
+          <p>اشتركي الآن واحصلي على خصم ١٠٪ على أول طلب، مع أخبار مجموعاتنا الجديدة.</p>
+        </div>
+        <form class="newsletter-form" id="newsletter-form">
+          <label for="newsletter-email" class="sr-only" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0">بريدك الإلكتروني</label>
+          <input id="newsletter-email" type="email" name="email" placeholder="أدخلي بريدك الإلكتروني" autocomplete="email" required>
+          <button class="btn" type="submit">اشتركي الآن <span aria-hidden="true">←</span></button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" id="contact">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="brand" href="#home">
+            <span class="brand-mark" aria-hidden="true">❋</span>
+            <span class="brand-name"><strong>سيارا</strong><small>SIARA</small></span>
+          </a>
+          <p>عطور تحكي حكايتكِ. نستلهم من الشرق لنصنع نفحات تبقى في الذاكرة.</p>
+          <div class="socials" aria-label="وسائل التواصل الاجتماعي">
+            <a href="https://www.instagram.com/" aria-label="إنستغرام">ig</a>
+            <a href="https://www.facebook.com/" aria-label="فيسبوك">f</a>
+            <a href="https://www.tiktok.com/" aria-label="تيك توك">♪</a>
+          </div>
+        </div>
+        <div>
+          <h3>روابط سريعة</h3>
+          <ul><li><a href="#home">الرئيسية</a></li><li><a href="#collection">المجموعة</a></li><li><a href="#story">قصة البراند</a></li><li><a href="#reviews">آراء العملاء</a></li></ul>
+        </div>
+        <div>
+          <h3>معلومات مهمة</h3>
+          <ul><li><a href="#contact" data-demo-link="سياسة الخصوصية">سياسة الخصوصية</a></li><li><a href="#contact" data-demo-link="الشروط والأحكام">الشروط والأحكام</a></li><li><a href="#contact" data-demo-link="الشحن والاستبدال">الشحن والاستبدال</a></li></ul>
+        </div>
+        <div>
+          <h3>تواصلي معنا</h3>
+          <ul><li><a href="mailto:hello@siara.example">hello@siara.example</a></li><li><a href="tel:+20212345678" dir="ltr">+20 2 1234 5678</a></li><li>القاهرة، مصر</li><li>السبت – الخميس، ١٠ ص إلى ٦ م</li></ul>
+        </div>
+      </div>
+      <div class="copyright"><span>© <span id="year"></span> سيارا. جميع الحقوق محفوظة.</span><a href="#home">صُنعت بحب لتفاصيلكِ ↑</a></div>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    // عدّلي بيانات المنتجات من خصائص data-product و data-price في أزرار المنتجات.
+    const toast = document.getElementById('toast');
+    let toastTimer;
+    let cartCount = 0;
+    const cart = [];
+
+    function showToast(message) {
+      toast.innerHTML = message;
+      toast.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove('show'), 3200);
+    }
+
+    document.querySelectorAll('.add-to-cart').forEach((button) => {
+      button.addEventListener('click', () => {
+        const product = button.dataset.product;
+        const price = Number(button.dataset.price);
+        cart.push({ product, price });
+        cartCount += 1;
+        document.getElementById('cart-count').textContent = cartCount;
+        showToast(`<strong>تمت الإضافة بنجاح!</strong><br>${product} أصبح في سلتكِ.`);
+      });
+    });
+
+    document.getElementById('cart-button').addEventListener('click', () => {
+      if (!cart.length) {
+        showToast('سلتكِ فارغة حاليًا — اختاري عطركِ المفضل من المجموعة.');
+        return;
+      }
+      const total = cart.reduce((sum, item) => sum + item.price, 0);
+      const items = cart.map(item => item.product).join('، ');
+      showToast(`<strong>سلتكِ (${cart.length})</strong><br>${items}<br>الإجمالي: ${total.toLocaleString('ar-EG')} جنيه. هذه نسخة تجريبية للواجهة.`);
+    });
+
+    document.getElementById('newsletter-form').addEventListener('submit', (event) => {
+      event.preventDefault();
+      const emailInput = document.getElementById('newsletter-email');
+      if (!emailInput.checkValidity()) {
+        emailInput.reportValidity();
+        return;
+      }
+      showToast('<strong>أهلًا بكِ في نادي سيارا!</strong><br>تم تسجيل بريدكِ في هذه النسخة التجريبية.');
+      event.target.reset();
+    });
+
+    const menuToggle = document.getElementById('menu-toggle');
+    const mainNav = document.getElementById('main-nav');
+    menuToggle.addEventListener('click', () => {
+      const isOpen = mainNav.classList.toggle('open');
+      menuToggle.setAttribute('aria-expanded', String(isOpen));
+      menuToggle.setAttribute('aria-label', isOpen ? 'إغلاق القائمة' : 'فتح القائمة');
+    });
+    mainNav.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+      mainNav.classList.remove('open');
+      menuToggle.setAttribute('aria-expanded', 'false');
+      menuToggle.setAttribute('aria-label', 'فتح القائمة');
+    }));
+
+    document.querySelectorAll('[data-demo-link]').forEach(link => link.addEventListener('click', (event) => {
+      event.preventDefault();
+      showToast(`صفحة <strong>${link.dataset.demoLink}</strong> تُضاف عند تجهيز الموقع النهائي.`);
+    }));
+
+    // ظهور هادئ للعناصر أثناء التمرير، مع احترام إعداد تقليل الحركة.
+    if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      document.querySelectorAll('.reveal').forEach(element => observer.observe(element));
+    } else {
+      document.querySelectorAll('.reveal').forEach(element => element.classList.add('visible'));
+    }
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
